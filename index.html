@@ -453,7 +453,7 @@
     <div class="step-indicator">Langkah 1 dari 2</div>
     <h2>Data Kamu</h2>
     <p class="panel-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
-    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span style="color:var(--text3)">Rp 75.000/bulan</span></div>
+    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span style="color:var(--text3)">Rp 100.000/bulan</span></div>
     <div class="field">
       <label>Nama Lengkap</label>
       <input type="text" id="inp-name" placeholder="Budi Santoso" autocomplete="name" />
@@ -509,7 +509,7 @@
       <div class="bank-title">Detail Pembayaran</div>
       <div class="bank-row"><span class="bk">Bank</span><span class="bv">Bank Central Asia (BCA)</span></div>
       <div class="bank-row"><span class="bk">Atas Nama</span><span class="bv">Finandi Amartya Deva</span></div>
-      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green">Rp 75.000</span></div>
+      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green">Rp 100.000</span></div>
       <div class="rekening-box">
         <div>
           <div style="font-size:0.72rem;color:var(--text3);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;">Nomor Rekening</div>
@@ -521,7 +521,7 @@
 
     <div class="steps" style="text-align:left;">
       <div class="step"><div class="step-n">1</div><div class="step-t">Buka aplikasi m-banking atau bank kamu</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong>Rp 75.000</strong> ke rekening BCA di atas</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong>Rp 100.000</strong> ke rekening BCA di atas</div></div>
       <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Screenshot bukti pembayaran</strong> lalu upload di bawah ini</div></div>
     </div>
 
@@ -584,7 +584,7 @@
     if (!name)  { shake('inp-name'); return; }
     if (!email || !email.includes('@')) { shake('inp-email'); return; }
     if (!phone || phone.length < 8)    { shake('inp-phone'); return; }
-    document.getElementById('confirm-plan').textContent  = '🧠 Claude Pro Shared — Rp 75.000/bulan';
+    document.getElementById('confirm-plan').textContent  = '🧠 Claude Pro Shared — Rp 100.000/bulan';
     document.getElementById('confirm-name').textContent  = name;
     document.getElementById('confirm-email').textContent = email;
     document.getElementById('confirm-phone').textContent = phone;
@@ -635,11 +635,11 @@
     setStatus('Mengupload bukti dan menyimpan pesanan...', '');
     try {
       const base64 = await toBase64(proofFile);
-      const payload = { name, email, phone, plan: 'Claude Pro Shared — Rp 75.000/bulan', fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
+      const payload = { name, email, phone, plan: 'Claude Pro Shared — Rp 100.000/bulan', fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
       const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
       const result = await response.json();
       if (result.result === 'success') {
-        document.getElementById('s-plan').textContent  = 'Claude Pro Shared — Rp 75.000/bulan';
+        document.getElementById('s-plan').textContent  = 'Claude Pro Shared — Rp 100.000/bulan';
         document.getElementById('s-name').textContent  = name;
         document.getElementById('s-email').textContent = email;
         document.getElementById('s-phone').textContent = phone;
