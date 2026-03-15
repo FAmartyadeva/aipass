@@ -387,7 +387,7 @@
 </footer>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkD8MuqKC1Pl-hiDmzBOfjxRYo-YkwXrJdkWeU3u6fYUGCQY-WuLmt1KL9swzYxhzo/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYGKGGh8xWO7f9UT19GlNhscxJXj0Ah37D_dJ0KU8fxVQnudkxOlWOe_El36RNRUFF/exec';
   const ADMIN_PW = 'admin123#';
 
   // ── PRICE STATE (synced with Google Sheets) ──
@@ -408,13 +408,20 @@
 
   async function loadPrices() {
     try {
-      const res = await fetch(APPS_SCRIPT_URL);
-      const data = await res.json();
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'GET',
+        redirect: 'follow',
+        mode: 'cors'
+      });
+      const text = await res.text();
+      const data = JSON.parse(text);
       if (data.sell && data.orig) {
-        prices.sell = data.sell;
-        prices.orig = data.orig;
+        prices.sell = Number(data.sell);
+        prices.orig = Number(data.orig);
       }
-    } catch(e) { /* use defaults if fetch fails */ }
+    } catch(e) {
+      console.log('Price fetch failed, using defaults:', e);
+    }
     renderPrices();
   }
 
