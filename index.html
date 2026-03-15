@@ -24,21 +24,12 @@
     --radius: 18px;
     --radius-sm: 12px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    font-size: 17px;
-    line-height: 1.5;
+    background: var(--bg); color: var(--text); min-height: 100vh;
+    overflow-x: hidden; -webkit-font-smoothing: antialiased; font-size: 17px; line-height: 1.5;
   }
-
-  /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -48,353 +39,129 @@
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 0.5px solid var(--border);
   }
-  .logo {
-    font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em;
-    color: var(--text); cursor: pointer; transition: opacity 0.2s;
-    display: flex; align-items: center; gap: 2px;
-  }
+  .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; gap: 2px; }
   .logo:hover { opacity: 0.7; }
   .logo-dot { color: var(--accent); }
-  .nav-pill {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
-    color: var(--text3); border: 0.5px solid var(--border);
-    padding: 4px 12px; border-radius: 100px; text-transform: uppercase;
-  }
-
-  /* HERO */
-  .hero {
-    text-align: center;
-    padding: 100px 24px 72px;
-    animation: fadeUp 0.7s ease both;
-  }
-  .hero-eyebrow {
-    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 20px; display: block;
-  }
-  .hero h1 {
-    font-size: clamp(2.6rem, 5.5vw, 4.8rem);
-    font-weight: 700; line-height: 1.07; letter-spacing: -0.03em;
-    color: var(--text); margin-bottom: 18px;
-  }
-  .hero h1 span {
-    background: linear-gradient(135deg, #30d158, #0a84ff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero-sub {
-    font-size: 1.15rem; color: var(--text2); max-width: 460px;
-    margin: 0 auto 52px; line-height: 1.65; font-weight: 400;
-  }
-
+  .nav-pill { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text3); border: 0.5px solid var(--border); padding: 4px 12px; border-radius: 100px; text-transform: uppercase; }
+  .hero { text-align: center; padding: 100px 24px 72px; animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
+  .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4.8rem); font-weight: 700; line-height: 1.07; letter-spacing: -0.03em; color: var(--text); margin-bottom: 18px; }
+  .hero h1 span { background: linear-gradient(135deg, #30d158, #0a84ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 1.15rem; color: var(--text2); max-width: 460px; margin: 0 auto 52px; line-height: 1.65; font-weight: 400; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-
-  /* PLAN SECTION */
-  .section-label {
-    text-align: center; font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.1em; color: var(--text3); text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .plan-wrap {
-    display: flex; justify-content: center;
-    padding: 0 24px 100px;
-    animation: fadeUp 0.7s 0.1s ease both;
-  }
-  .plan-card {
-    background: var(--surface); border: 0.5px solid var(--border);
-    border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 420px;
-    cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .plan-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-    border-color: rgba(48,209,88,0.4);
-  }
-  .plan-card::after {
-    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 60%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(48,209,88,0.5), transparent);
-  }
-  .plan-badge {
-    display: inline-block; background: var(--accent); color: #000;
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
-    margin-bottom: 24px;
-  }
+  .section-label { text-align: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text3); text-transform: uppercase; margin-bottom: 24px; }
+  .plan-wrap { display: flex; justify-content: center; padding: 0 24px 100px; animation: fadeUp 0.7s 0.1s ease both; }
+  .plan-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 420px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; text-align: center; position: relative; overflow: hidden; }
+  .plan-card:hover { transform: scale(1.02); box-shadow: 0 32px 80px rgba(0,0,0,0.7); border-color: rgba(48,209,88,0.4); }
+  .plan-card::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(48,209,88,0.5), transparent); }
+  .plan-badge { display: inline-block; background: var(--accent); color: #000; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 24px; }
   .plan-icon { font-size: 3.2rem; margin-bottom: 16px; display: block; }
-  .plan-name {
-    font-size: 1.9rem; font-weight: 700; letter-spacing: -0.025em;
-    color: var(--text); margin-bottom: 8px;
-  }
-  .plan-desc {
-    font-size: 0.95rem; color: var(--text2); line-height: 1.6;
-    margin-bottom: 10px; font-weight: 400;
-  }
-  .plan-type {
-    display: inline-block; font-size: 0.8rem; color: var(--text3);
-    margin-bottom: 28px; font-weight: 400;
-  }
-  .plan-price {
-    font-size: 2.8rem; font-weight: 700; letter-spacing: -0.04em;
-    color: var(--text); margin-bottom: 4px;
-  }
+  .plan-name { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 8px; }
+  .plan-desc { font-size: 0.95rem; color: var(--text2); line-height: 1.6; margin-bottom: 10px; font-weight: 400; }
+  .plan-type { display: inline-block; font-size: 0.8rem; color: var(--text3); margin-bottom: 28px; font-weight: 400; }
+  .plan-price { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.04em; color: var(--text); margin-bottom: 4px; }
   .plan-price sup { font-size: 1.2rem; vertical-align: super; font-weight: 600; }
   .plan-period { font-size: 0.88rem; color: var(--text3); margin-bottom: 8px; }
-  .plan-saving {
-    font-size: 0.82rem; color: var(--text3); margin-bottom: 32px;
-  }
+  .plan-saving { font-size: 0.82rem; color: var(--text3); margin-bottom: 32px; }
   .plan-saving s { color: var(--danger); }
   .plan-saving strong { color: var(--accent); }
-  .plan-cta {
-    display: block; width: 100%; background: var(--accent); color: #000;
-    border: none; padding: 16px; border-radius: var(--radius-sm);
-    font-size: 1rem; font-weight: 600; cursor: pointer;
-    transition: all 0.2s; letter-spacing: -0.01em;
-  }
+  .plan-cta { display: block; width: 100%; background: var(--accent); color: #000; border: none; padding: 16px; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: -0.01em; }
   .plan-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-  /* SCREENS */
-  .screen {
-    display: none; position: relative; z-index: 5;
-    min-height: calc(100vh - 56px); align-items: center;
-    justify-content: center; padding: 52px 20px;
-    animation: fadeUp 0.35s ease;
-  }
+  .screen { display: none; position: relative; z-index: 5; min-height: calc(100vh - 56px); align-items: center; justify-content: center; padding: 52px 20px; animation: fadeUp 0.35s ease; }
   .screen.active { display: flex; }
-  #screen-success { flex-direction: column; text-align: center; }
-
-  /* PANEL */
-  .panel {
-    background: var(--surface); border: 0.5px solid var(--border);
-    border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 520px;
-  }
-  .panel-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.95rem; color: var(--blue); margin-bottom: 32px;
-    cursor: pointer; background: none; border: none;
-    font-family: inherit; font-weight: 400; transition: opacity 0.2s;
-  }
+  #screen-success, #screen-admin { flex-direction: column; text-align: center; }
+  .panel { background: var(--surface); border: 0.5px solid var(--border); border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 520px; }
+  .panel-back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.95rem; color: var(--blue); margin-bottom: 32px; cursor: pointer; background: none; border: none; font-family: inherit; font-weight: 400; transition: opacity 0.2s; }
   .panel-back:hover { opacity: 0.7; }
-  .step-indicator {
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
-    color: var(--text3); text-transform: uppercase; margin-bottom: 10px;
-  }
-  .panel h2 {
-    font-size: 2rem; font-weight: 700; letter-spacing: -0.025em;
-    color: var(--text); margin-bottom: 8px;
-  }
-  .panel-sub {
-    font-size: 0.95rem; color: var(--text2); margin-bottom: 32px;
-    line-height: 1.55; font-weight: 400;
-  }
-
-  /* CHIP */
-  .chip {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--accent-dim); border: 0.5px solid var(--accent-border);
-    padding: 7px 14px; border-radius: 100px; font-size: 0.85rem;
-    color: var(--accent); margin-bottom: 28px; font-weight: 500;
-  }
-
-  /* FIELDS */
+  .step-indicator { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; margin-bottom: 10px; }
+  .panel h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 8px; }
+  .panel-sub { font-size: 0.95rem; color: var(--text2); margin-bottom: 32px; line-height: 1.55; font-weight: 400; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 0.5px solid var(--accent-border); padding: 7px 14px; border-radius: 100px; font-size: 0.85rem; color: var(--accent); margin-bottom: 28px; font-weight: 500; }
   .field { margin-bottom: 18px; }
-  .field label {
-    display: block; font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.04em; color: var(--text3);
-    text-transform: uppercase; margin-bottom: 8px;
-  }
-  input[type="text"], input[type="email"], input[type="tel"] {
-    width: 100%; background: var(--surface2); border: 0.5px solid var(--border);
-    border-radius: var(--radius-sm); padding: 15px 17px;
-    font-family: inherit; font-size: 1rem; color: var(--text);
-    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-    -webkit-appearance: none;
-  }
+  .field label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; }
+  input[type="text"], input[type="email"], input[type="tel"] { width: 100%; background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 15px 17px; font-family: inherit; font-size: 1rem; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; }
   input::placeholder { color: var(--text3); }
-  input:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(10,132,255,0.15);
-  }
-
-  /* CTA BUTTON */
-  .cta-btn {
-    width: 100%; margin-top: 10px; background: var(--accent); color: #000;
-    border: none; padding: 17px; border-radius: var(--radius-sm);
-    font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer;
-    letter-spacing: -0.01em; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
+  input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(10,132,255,0.15); }
+  .cta-btn { width: 100%; margin-top: 10px; background: var(--accent); color: #000; border: none; padding: 17px; border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .cta-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
   .cta-btn:active { transform: translateY(0); filter: brightness(0.95); }
   .cta-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; filter: none; }
-
-  /* QR */
-  .qr-warn {
-    display: flex; gap: 12px; align-items: flex-start;
-    background: var(--warn-dim); border: 0.5px solid var(--warn-border);
-    border-radius: var(--radius-sm); padding: 15px 17px;
-    font-size: 0.9rem; color: var(--warn); line-height: 1.55;
-    text-align: left; margin-bottom: 20px; font-weight: 400;
-  }
+  .qr-warn { display: flex; gap: 12px; align-items: flex-start; background: var(--warn-dim); border: 0.5px solid var(--warn-border); border-radius: var(--radius-sm); padding: 15px 17px; font-size: 0.9rem; color: var(--warn); line-height: 1.55; text-align: left; margin-bottom: 20px; font-weight: 400; }
   .qr-warn-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-
   .qr-wrap { position: relative; display: inline-block; margin: 18px 0 10px; }
-  .qr-img-box {
-    background: #fff; border-radius: 20px; padding: 18px;
-    display: inline-block; opacity: 0.25; filter: blur(2px) grayscale(0.5);
-  }
+  .qr-img-box { background: #fff; border-radius: 20px; padding: 18px; display: inline-block; opacity: 0.25; filter: blur(2px) grayscale(0.5); }
   .qr-grid { width: 170px; height: 170px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-  .qr-grid svg { opacity: 0.7; }
-  .qr-overlay {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.55); border-radius: 20px;
-    backdrop-filter: blur(3px);
-  }
-  .qr-overlay span {
-    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em;
-    color: var(--warn); text-transform: uppercase;
-    border: 1px solid var(--warn-border); padding: 6px 14px;
-    border-radius: 100px; background: var(--warn-dim);
-  }
-
-  /* DIVIDER */
-  .divider {
-    display: flex; align-items: center; gap: 12px; margin: 22px 0;
-  }
-  .divider::before, .divider::after {
-    content:''; flex:1; height: 0.5px; background: var(--border);
-  }
-  .divider span {
-    font-size: 0.72rem; font-weight: 600; color: var(--text3);
-    letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
-  }
-
-  /* BANK BOX */
-  .bank-box {
-    background: var(--surface2); border: 0.5px solid var(--border);
-    border-radius: var(--radius); padding: 24px; text-align: left;
-  }
-  .bank-title {
-    font-size: 0.95rem; font-weight: 600; color: var(--text);
-    margin-bottom: 18px; letter-spacing: -0.01em;
-  }
-  .bank-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 11px 0; border-bottom: 0.5px solid var(--border); gap: 16px;
-  }
+  .qr-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.55); border-radius: 20px; backdrop-filter: blur(3px); }
+  .qr-overlay span { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; color: var(--warn); text-transform: uppercase; border: 1px solid var(--warn-border); padding: 6px 14px; border-radius: 100px; background: var(--warn-dim); }
+  .divider { display: flex; align-items: center; gap: 12px; margin: 22px 0; }
+  .divider::before, .divider::after { content:''; flex:1; height: 0.5px; background: var(--border); }
+  .divider span { font-size: 0.72rem; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+  .bank-box { background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: left; }
+  .bank-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 18px; letter-spacing: -0.01em; }
+  .bank-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 0.5px solid var(--border); gap: 16px; }
   .bank-row:last-of-type { border-bottom: none; }
   .bk { font-size: 0.82rem; color: var(--text3); font-weight: 400; flex-shrink: 0; }
   .bv { font-size: 0.95rem; color: var(--text); font-weight: 500; text-align: right; }
   .bv.green { color: var(--accent); font-weight: 700; font-size: 1.05rem; }
-
-  .rekening-box {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--accent-dim); border: 0.5px solid var(--accent-border);
-    border-radius: var(--radius-sm); padding: 16px 18px; margin-top: 16px; gap: 12px;
-  }
-  .rek-num {
-    font-size: 1.5rem; font-weight: 700; letter-spacing: 0.04em;
-    color: var(--accent); font-variant-numeric: tabular-nums;
-  }
-  .copy-btn {
-    background: var(--accent-dim); border: 0.5px solid var(--accent-border);
-    color: var(--accent); padding: 9px 16px; border-radius: 100px;
-    font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: inherit;
-    transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
-  }
+  .rekening-box { display: flex; align-items: center; justify-content: space-between; background: var(--accent-dim); border: 0.5px solid var(--accent-border); border-radius: var(--radius-sm); padding: 16px 18px; margin-top: 16px; gap: 12px; }
+  .rek-num { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .copy-btn { background: var(--accent-dim); border: 0.5px solid var(--accent-border); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
   .copy-btn:hover { background: rgba(48,209,88,0.25); }
   .copy-btn.copied { background: var(--accent); color: #000; border-color: var(--accent); }
-
-  /* STEPS */
   .steps { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
-  .step {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 14px 0; border-bottom: 0.5px solid var(--border);
-  }
+  .step { display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-bottom: 0.5px solid var(--border); }
   .step:last-child { border-bottom: none; }
-  .step-n {
-    width: 26px; height: 26px; min-width: 26px; border-radius: 50%;
-    background: var(--accent-dim); border: 0.5px solid var(--accent-border);
-    color: var(--accent); font-size: 0.75rem; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; margin-top: 1px;
-  }
+  .step-n { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; background: var(--accent-dim); border: 0.5px solid var(--accent-border); color: var(--accent); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
   .step-t { font-size: 0.95rem; color: var(--text2); line-height: 1.5; padding-top: 3px; }
   .step-t strong { color: var(--text); font-weight: 600; }
-
-  /* CONFIRM NOTE */
-  .confirm-note {
-    background: var(--accent-dim); border: 0.5px solid var(--accent-border);
-    border-radius: var(--radius-sm); padding: 16px 18px;
-    font-size: 0.88rem; color: var(--text2); line-height: 1.9; text-align: left;
-  }
+  .confirm-note { background: var(--accent-dim); border: 0.5px solid var(--accent-border); border-radius: var(--radius-sm); padding: 16px 18px; font-size: 0.88rem; color: var(--text2); line-height: 1.9; text-align: left; }
   .confirm-note strong { color: var(--accent); font-weight: 600; }
-
-  /* UPLOAD */
-  .upload-area {
-    border: 1.5px dashed var(--border); border-radius: var(--radius-sm);
-    padding: 28px 20px; text-align: center; cursor: pointer;
-    transition: all 0.25s; position: relative; background: var(--surface2);
-  }
-  .upload-area:hover, .upload-area.dragover {
-    border-color: var(--accent); background: var(--accent-dim);
-  }
-  .upload-area input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
+  .upload-area { border: 1.5px dashed var(--border); border-radius: var(--radius-sm); padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.25s; position: relative; background: var(--surface2); }
+  .upload-area:hover, .upload-area.dragover { border-color: var(--accent); background: var(--accent-dim); }
+  .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .upload-ico { font-size: 1.8rem; margin-bottom: 8px; display: block; }
   .upload-lbl { font-size: 0.92rem; color: var(--text3); line-height: 1.6; }
   .upload-lbl strong { color: var(--accent); font-weight: 600; }
-
   .prev-wrap { display: none; margin-top: 14px; position: relative; }
   .prev-wrap img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; border: 0.5px solid var(--border); }
-  .prev-rm {
-    position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75);
-    border: 0.5px solid var(--border); color: var(--text); border-radius: 6px;
-    padding: 6px 12px; font-size: 0.78rem; cursor: pointer; font-family: inherit;
-    transition: all 0.2s;
-  }
+  .prev-rm { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75); border: 0.5px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 12px; font-size: 0.78rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
   .prev-rm:hover { color: var(--danger); border-color: var(--danger); }
   .file-nm { font-size: 0.78rem; color: var(--accent); margin-top: 8px; text-align: center; }
-
-  /* STATUS */
   .status { margin-top: 12px; font-size: 0.88rem; text-align: center; min-height: 20px; line-height: 1.5; }
   .status.err { color: var(--danger); }
   .status.ok { color: var(--accent); }
-
-  .spinner {
-    display: inline-block; width: 16px; height: 16px;
-    border: 2px solid rgba(0,0,0,0.25); border-top-color: #000;
-    border-radius: 50%; animation: spin 0.6s linear infinite;
-  }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(0,0,0,0.25); border-top-color: #000; border-radius: 50%; animation: spin 0.6s linear infinite; }
   @keyframes spin { to{transform:rotate(360deg)} }
-
-  /* SUCCESS */
   .success-ico { font-size: 5rem; margin-bottom: 16px; display: block; animation: pop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both; }
   @keyframes pop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
   .success-h { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
   .success-p { font-size: 1rem; color: var(--text2); line-height: 1.65; max-width: 340px; margin: 0 auto 28px; }
-  .success-box {
-    background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius);
-    padding: 24px 26px; font-size: 0.95rem; color: var(--text2);
-    line-height: 2.1; text-align: left; margin-bottom: 28px;
-    max-width: 400px; width: 100%;
-  }
+  .success-box { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px 26px; font-size: 0.95rem; color: var(--text2); line-height: 2.1; text-align: left; margin-bottom: 28px; max-width: 400px; width: 100%; }
   .success-box strong { color: var(--accent); font-weight: 600; }
-  .back-home-btn {
-    background: var(--surface); border: 0.5px solid var(--border); color: var(--text2);
-    padding: 14px 28px; border-radius: var(--radius-sm); font-family: inherit;
-    font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
-  }
+  .back-home-btn { background: var(--surface); border: 0.5px solid var(--border); color: var(--text2); padding: 14px 28px; border-radius: var(--radius-sm); font-family: inherit; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
   .back-home-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  footer {
-    text-align: center; padding: 28px 24px;
-    border-top: 0.5px solid var(--border);
-    font-size: 0.8rem; color: var(--text3); font-weight: 400;
-  }
+  /* ADMIN */
+  .admin-modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); align-items: center; justify-content: center; padding: 20px; }
+  .admin-modal-overlay.open { display: flex; }
+  .admin-modal { background: var(--surface); border: 0.5px solid var(--border); border-radius: 24px; padding: 44px 40px; width: 100%; max-width: 380px; animation: fadeUp 0.3s ease; }
+  .admin-field-wrap { display: flex; align-items: center; background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 6px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .admin-field-wrap:focus-within { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(10,132,255,0.15); }
+  .admin-field-wrap input { flex: 1; background: transparent; border: none; padding: 15px 17px; font-family: inherit; font-size: 1rem; color: var(--text); outline: none; }
+  .admin-prefix { padding: 0 14px; color: var(--text3); font-size: 0.95rem; font-weight: 500; flex-shrink: 0; border-right: 0.5px solid var(--border); }
+  .admin-box { background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
+  .admin-box-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 18px; }
+  .admin-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .admin-current { font-size: 0.8rem; color: var(--text3); margin-top: 8px; }
+  .admin-current strong { color: var(--accent); }
+  .preview-box { background: var(--accent-dim); border: 0.5px solid var(--accent-border); border-radius: 14px; padding: 18px 20px; margin-bottom: 24px; font-size: 0.88rem; color: var(--text2); line-height: 2; }
+  .admin-save-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 17px; border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
+  .admin-save-btn:hover { filter: brightness(1.1); }
 
-  /* MOBILE */
+  footer { text-align: center; padding: 28px 24px; border-top: 0.5px solid var(--border); font-size: 0.8rem; color: var(--text3); font-weight: 400; }
+  .admin-trigger { margin-left: 14px; cursor: pointer; opacity: 0.12; font-size: 0.78rem; user-select: none; transition: opacity 0.2s; display: inline-block; }
+  .admin-trigger:hover { opacity: 0.35; }
+
   @media (max-width: 600px) {
     nav { padding: 0 20px; }
     .nav-pill { display: none; }
@@ -412,18 +179,18 @@
     .bv { text-align: left; }
     .success-h { font-size: 1.85rem; }
     .cta-btn { font-size: 1rem; padding: 16px; }
+    .admin-modal { padding: 32px 22px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo" onclick="goHome()">AI<span class="logo-dot">Pass</span></div>
   <div class="nav-pill">Premium Access</div>
 </nav>
 
-<!-- ══ HOME ══ -->
+<!-- HOME -->
 <div id="screen-home" class="screen active" style="flex-direction:column;">
   <div class="hero">
     <span class="hero-eyebrow">Instant AI Access</span>
@@ -438,22 +205,22 @@
       <div class="plan-name">Claude Pro</div>
       <p class="plan-desc">AI frontier dari Anthropic — konteks panjang, reasoning cepat, analisis dokumen.</p>
       <span class="plan-type">Shared Account</span>
-      <div class="plan-price"><sup>Rp</sup>100.000</div>
+      <div class="plan-price"><sup>Rp</sup><span id="disp-sell">100.000</span></div>
       <div class="plan-period">per bulan</div>
-      <div class="plan-saving">Harga resmi <s>Rp 343.000</s> — <strong>hemat 70%</strong></div>
+      <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 343.000</s> — <strong id="disp-disc">hemat 71%</strong></div>
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
   </div>
 </div>
 
-<!-- ══ FORM ══ -->
+<!-- FORM -->
 <div id="screen-form" class="screen">
   <div class="panel">
-    <button class="panel-back" onclick="goHome()">‹ Kembali</button>
+    <button class="panel-back" onclick="goHome()">&#8249; Kembali</button>
     <div class="step-indicator">Langkah 1 dari 2</div>
     <h2>Data Kamu</h2>
     <p class="panel-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
-    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span style="color:var(--text3)">Rp 100.000/bulan</span></div>
+    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 100.000/bulan</span></div>
     <div class="field">
       <label>Nama Lengkap</label>
       <input type="text" id="inp-name" placeholder="Budi Santoso" autocomplete="name" />
@@ -466,23 +233,21 @@
       <label>Nomor WhatsApp Aktif</label>
       <input type="tel" id="inp-phone" placeholder="08xxxxxxxxxx" autocomplete="tel" />
     </div>
-    <button class="cta-btn" onclick="goToPayment()">Lanjut ke Pembayaran →</button>
+    <button class="cta-btn" onclick="goToPayment()">Lanjut ke Pembayaran &#8594;</button>
   </div>
 </div>
 
-<!-- ══ PAYMENT ══ -->
+<!-- PAYMENT -->
 <div id="screen-qr" class="screen">
   <div class="panel" style="max-width:560px; text-align:center;">
-    <button class="panel-back" onclick="goToForm()">‹ Kembali</button>
+    <button class="panel-back" onclick="showScreen('screen-form')">&#8249; Kembali</button>
     <div class="step-indicator">Langkah 2 dari 2</div>
     <h2>Selesaikan Pembayaran</h2>
     <p class="panel-sub">Transfer ke rekening di bawah, lalu upload bukti pembayaran kamu.</p>
-
     <div class="qr-warn">
-      <span class="qr-warn-icon">⚠️</span>
+      <span class="qr-warn-icon">&#9888;&#65039;</span>
       <span>QR Code <strong>belum tersedia</strong> saat ini. Gunakan <strong>transfer bank manual</strong> di bawah untuk melakukan pembayaran.</span>
     </div>
-
     <div class="qr-wrap">
       <div class="qr-img-box">
         <div class="qr-grid">
@@ -502,14 +267,12 @@
       </div>
       <div class="qr-overlay"><span>Belum Aktif</span></div>
     </div>
-
     <div class="divider"><span>Transfer Bank</span></div>
-
     <div class="bank-box" style="text-align:left;">
       <div class="bank-title">Detail Pembayaran</div>
       <div class="bank-row"><span class="bk">Bank</span><span class="bv">Bank Central Asia (BCA)</span></div>
       <div class="bank-row"><span class="bk">Atas Nama</span><span class="bv">Finandi Amartya Deva</span></div>
-      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green">Rp 100.000</span></div>
+      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green" id="pay-amount">Rp 100.000</span></div>
       <div class="rekening-box">
         <div>
           <div style="font-size:0.72rem;color:var(--text3);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;">Nomor Rekening</div>
@@ -518,64 +281,199 @@
         <button class="copy-btn" id="copy-btn" onclick="copyAccount()">Salin</button>
       </div>
     </div>
-
     <div class="steps" style="text-align:left;">
       <div class="step"><div class="step-n">1</div><div class="step-t">Buka aplikasi m-banking atau bank kamu</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong>Rp 100.000</strong> ke rekening BCA di atas</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong id="pay-amount-step">Rp 100.000</strong> ke rekening BCA di atas</div></div>
       <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Screenshot bukti pembayaran</strong> lalu upload di bawah ini</div></div>
     </div>
-
     <div class="confirm-note" style="margin-bottom:20px; text-align:left;">
-      ✓ Plan: <strong id="confirm-plan">—</strong><br>
-      ✓ Nama: <strong id="confirm-name">—</strong><br>
-      ✓ Email: <strong id="confirm-email">—</strong><br>
-      ✓ WhatsApp: <strong id="confirm-phone">—</strong>
+      &#10003; Plan: <strong id="confirm-plan">&#8212;</strong><br>
+      &#10003; Nama: <strong id="confirm-name">&#8212;</strong><br>
+      &#10003; Email: <strong id="confirm-email">&#8212;</strong><br>
+      &#10003; WhatsApp: <strong id="confirm-phone">&#8212;</strong>
     </div>
-
     <div class="field" style="text-align:left;">
       <label>Upload Bukti Pembayaran</label>
       <div class="upload-area" id="upload-area">
         <input type="file" id="inp-proof" accept="image/*" onchange="handleFile(this)" />
-        <span class="upload-ico">📎</span>
-        <div class="upload-lbl"><strong>Ketuk untuk upload</strong> atau drag &amp; drop<br><span style="font-size:0.82rem;">JPG, PNG, WEBP — maks 5MB</span></div>
+        <span class="upload-ico">&#128206;</span>
+        <div class="upload-lbl"><strong>Ketuk untuk upload</strong> atau drag &amp; drop<br><span style="font-size:0.82rem;">JPG, PNG, WEBP &#8212; maks 5MB</span></div>
       </div>
       <div class="prev-wrap" id="prev-wrap">
         <img id="prev-img" src="" alt="Bukti pembayaran" />
-        <button class="prev-rm" onclick="removeFile()">✕ Hapus</button>
+        <button class="prev-rm" onclick="removeFile()">&#10005; Hapus</button>
         <div class="file-nm" id="file-nm"></div>
       </div>
     </div>
-
-    <button class="cta-btn" id="submit-btn" onclick="submitOrder()">Kirim Pesanan →</button>
+    <button class="cta-btn" id="submit-btn" onclick="submitOrder()">Kirim Pesanan &#8594;</button>
     <div class="status" id="status-msg"></div>
   </div>
 </div>
 
-<!-- ══ SUCCESS ══ -->
+<!-- SUCCESS -->
 <div id="screen-success" class="screen">
-  <span class="success-ico">✅</span>
+  <span class="success-ico">&#9989;</span>
   <div class="success-h">Pesanan Diterima!</div>
   <p class="success-p">Bukti pembayaran kamu sudah kami terima. Kami akan verifikasi dan mengirim kredensial segera.</p>
   <div class="success-box">
-    ✓ Plan: <strong id="s-plan">—</strong><br>
-    ✓ Nama: <strong id="s-name">—</strong><br>
-    ✓ Email: <strong id="s-email">—</strong><br>
-    ✓ WhatsApp: <strong id="s-phone">—</strong><br>
-    ✓ Bukti Bayar: <strong>Terupload ✓</strong>
+    &#10003; Plan: <strong id="s-plan">&#8212;</strong><br>
+    &#10003; Nama: <strong id="s-name">&#8212;</strong><br>
+    &#10003; Email: <strong id="s-email">&#8212;</strong><br>
+    &#10003; WhatsApp: <strong id="s-phone">&#8212;</strong><br>
+    &#10003; Bukti Bayar: <strong>Terupload &#10003;</strong>
   </div>
-  <p style="font-size:0.92rem;color:var(--text3);margin-bottom:28px;">Kredensial dikirim ke email kamu dalam <strong style="color:var(--text)">15–30 menit</strong>.</p>
-  <button class="back-home-btn" onclick="resetAndGoHome()">← Kembali ke Beranda</button>
+  <p style="font-size:0.92rem;color:var(--text3);margin-bottom:28px;">Kredensial dikirim ke email kamu dalam <strong style="color:var(--text)">15&#8211;30 menit</strong>.</p>
+  <button class="back-home-btn" onclick="resetAndGoHome()">&#8592; Kembali ke Beranda</button>
 </div>
 
-<footer>Copyright © 2026 AIPass. All rights reserved.</footer>
+<!-- ADMIN PANEL -->
+<div id="screen-admin" class="screen" style="align-items:center;">
+  <div style="width:100%;max-width:480px;">
+    <button class="panel-back" onclick="exitAdmin()">&#8249; Kembali</button>
+    <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;color:var(--text3);text-transform:uppercase;margin-bottom:10px;">Admin Panel</div>
+    <div style="font-size:2rem;font-weight:700;letter-spacing:-0.025em;margin-bottom:6px;">Kelola Harga</div>
+    <div style="font-size:0.92rem;color:var(--text2);margin-bottom:32px;">Perubahan langsung tercermin di halaman pelanggan.</div>
+
+    <div class="admin-box">
+      <div class="admin-box-title">&#128176; Harga Jual</div>
+      <label class="admin-label">Harga Produk (Rp)</label>
+      <div class="admin-field-wrap">
+        <span class="admin-prefix">Rp</span>
+        <input type="number" id="admin-sell" placeholder="100000" oninput="updateAdminPreview()" />
+      </div>
+      <div class="admin-current">Saat ini: <strong id="cur-sell"></strong></div>
+    </div>
+
+    <div class="admin-box">
+      <div class="admin-box-title">&#127991; Harga Coret (Harga Resmi)</div>
+      <label class="admin-label">Harga Original (Rp)</label>
+      <div class="admin-field-wrap">
+        <span class="admin-prefix">Rp</span>
+        <input type="number" id="admin-orig" placeholder="343000" oninput="updateAdminPreview()" />
+      </div>
+      <div class="admin-current">Saat ini: <strong id="cur-orig"></strong></div>
+    </div>
+
+    <div class="preview-box">
+      Preview tampilan pelanggan:<br>
+      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 100.000</strong><span style="color:var(--text3)">/bulan</span><br>
+      Harga resmi: <s style="color:var(--danger);" id="prev-orig">Rp 343.000</s> &#8212; <strong style="color:var(--accent);" id="prev-disc">hemat 71%</strong>
+    </div>
+
+    <button class="admin-save-btn" onclick="saveAdminPrices()">Simpan Perubahan</button>
+    <div id="admin-msg" style="font-size:0.85rem;text-align:center;color:var(--accent);min-height:20px;"></div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="admin-modal-overlay" id="admin-overlay">
+  <div class="admin-modal">
+    <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;color:var(--text3);text-transform:uppercase;margin-bottom:10px;">Admin Access</div>
+    <div style="font-size:1.7rem;font-weight:700;letter-spacing:-0.025em;margin-bottom:8px;">Log In</div>
+    <div style="font-size:0.9rem;color:var(--text2);margin-bottom:28px;">Masukkan password admin untuk melanjutkan.</div>
+    <label class="admin-label">Password</label>
+    <div class="admin-field-wrap" style="margin-bottom:8px;">
+      <input type="password" id="admin-pw" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')checkPw()" style="padding:15px 17px;" />
+    </div>
+    <div id="pw-err" style="font-size:0.82rem;color:var(--danger);min-height:20px;margin-bottom:14px;"></div>
+    <button onclick="checkPw()" style="width:100%;background:var(--accent);color:#000;border:none;padding:16px;border-radius:var(--radius-sm);font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;margin-bottom:10px;">Masuk &#8594;</button>
+    <button onclick="closeAdmin()" style="width:100%;background:transparent;border:0.5px solid var(--border);color:var(--text3);padding:14px;border-radius:var(--radius-sm);font-family:inherit;font-size:0.95rem;cursor:pointer;">Batal</button>
+  </div>
+</div>
+
+<footer>
+  Copyright &copy; 2026 AIPass. All rights reserved.
+  <span class="admin-trigger" id="admin-trigger" onclick="openAdmin()" title="">&#9881;</span>
+</footer>
 
 <script>
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkD8MuqKC1Pl-hiDmzBOfjxRYo-YkwXrJdkWeU3u6fYUGCQY-WuLmt1KL9swzYxhzo/exec';
-  let proofFile = null;
+  const ADMIN_PW = 'admin123#';
 
-  function goToForm()    { showScreen('screen-form'); }
-  function goHome()      { showScreen('screen-home'); }
-  function goToFormBack(){ showScreen('screen-form'); }
+  // ── PRICE STATE (loaded from localStorage) ──
+  let prices = { sell: 100000, orig: 343000 };
+  function loadPrices() {
+    const saved = localStorage.getItem('aipass_prices');
+    if (saved) prices = JSON.parse(saved);
+    renderPrices();
+  }
+  function savePrices() { localStorage.setItem('aipass_prices', JSON.stringify(prices)); }
+
+  function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function calcDisc(sell, orig) { return Math.round((1 - sell/orig) * 100); }
+
+  function renderPrices() {
+    const disc = calcDisc(prices.sell, prices.orig);
+    // Home card
+    document.getElementById('disp-sell').textContent = fmt(prices.sell);
+    document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
+    document.getElementById('disp-disc').textContent = 'hemat ' + disc + '%';
+    // Form chip
+    document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + '/bulan';
+    // Payment page
+    document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
+    document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
+  }
+
+  // ── ADMIN ──
+  function openAdmin() {
+    document.getElementById('admin-pw').value = '';
+    document.getElementById('pw-err').textContent = '';
+    document.getElementById('admin-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('admin-pw').focus(), 100);
+  }
+  function closeAdmin() { document.getElementById('admin-overlay').classList.remove('open'); }
+  function checkPw() {
+    const val = document.getElementById('admin-pw').value;
+    if (val === ADMIN_PW) {
+      closeAdmin();
+      openAdminPanel();
+    } else {
+      document.getElementById('pw-err').textContent = 'Password salah. Coba lagi.';
+      document.getElementById('admin-pw').value = '';
+      document.getElementById('admin-pw').focus();
+    }
+  }
+  function openAdminPanel() {
+    document.getElementById('admin-sell').value = prices.sell;
+    document.getElementById('admin-orig').value = prices.orig;
+    document.getElementById('cur-sell').textContent = 'Rp ' + fmt(prices.sell);
+    document.getElementById('cur-orig').textContent = 'Rp ' + fmt(prices.orig);
+    updateAdminPreview();
+    showScreen('screen-admin');
+  }
+  function exitAdmin() { showScreen('screen-home'); }
+
+  function updateAdminPreview() {
+    const s = parseInt(document.getElementById('admin-sell').value) || prices.sell;
+    const o = parseInt(document.getElementById('admin-orig').value) || prices.orig;
+    const d = calcDisc(s, o);
+    document.getElementById('prev-sell').textContent = 'Rp ' + fmt(s);
+    document.getElementById('prev-orig').textContent = 'Rp ' + fmt(o);
+    document.getElementById('prev-disc').textContent = 'hemat ' + d + '%';
+  }
+
+  function saveAdminPrices() {
+    const s = parseInt(document.getElementById('admin-sell').value);
+    const o = parseInt(document.getElementById('admin-orig').value);
+    if (!s || s <= 0) { alert('Masukkan harga jual yang valid.'); return; }
+    if (!o || o <= 0) { alert('Masukkan harga original yang valid.'); return; }
+    if (s >= o) { alert('Harga jual harus lebih kecil dari harga original.'); return; }
+    prices.sell = s;
+    prices.orig = o;
+    savePrices();
+    renderPrices();
+    document.getElementById('cur-sell').textContent = 'Rp ' + fmt(s);
+    document.getElementById('cur-orig').textContent = 'Rp ' + fmt(o);
+    const msg = document.getElementById('admin-msg');
+    msg.textContent = '✓ Harga berhasil disimpan!';
+    setTimeout(() => msg.textContent = '', 3000);
+  }
+
+  // ── CUSTOMER FLOW ──
+  let proofFile = null;
+  function goToForm() { showScreen('screen-form'); }
+  function goHome()   { showScreen('screen-home'); }
 
   function goToPayment() {
     const name  = document.getElementById('inp-name').value.trim();
@@ -584,7 +482,7 @@
     if (!name)  { shake('inp-name'); return; }
     if (!email || !email.includes('@')) { shake('inp-email'); return; }
     if (!phone || phone.length < 8)    { shake('inp-phone'); return; }
-    document.getElementById('confirm-plan').textContent  = '🧠 Claude Pro Shared — Rp 100.000/bulan';
+    document.getElementById('confirm-plan').textContent  = '🧠 Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan';
     document.getElementById('confirm-name').textContent  = name;
     document.getElementById('confirm-email').textContent = email;
     document.getElementById('confirm-phone').textContent = phone;
@@ -635,18 +533,18 @@
     setStatus('Mengupload bukti dan menyimpan pesanan...', '');
     try {
       const base64 = await toBase64(proofFile);
-      const payload = { name, email, phone, plan: 'Claude Pro Shared — Rp 100.000/bulan', fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
+      const payload = { name, email, phone, plan: 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan', fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
       const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
       const result = await response.json();
       if (result.result === 'success') {
-        document.getElementById('s-plan').textContent  = 'Claude Pro Shared — Rp 100.000/bulan';
+        document.getElementById('s-plan').textContent  = 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan';
         document.getElementById('s-name').textContent  = name;
         document.getElementById('s-email').textContent = email;
         document.getElementById('s-phone').textContent = phone;
         showScreen('screen-success');
       } else { throw new Error(result.error || 'Unknown error'); }
     } catch(err) {
-      setStatus('❌ Gagal mengirim: ' + err.message, 'err');
+      setStatus('Gagal mengirim: ' + err.message, 'err');
       btn.disabled = false; btn.innerHTML = 'Kirim Pesanan →';
     }
   }
@@ -701,9 +599,12 @@
     inp.files = e.dataTransfer.files; handleFile(inp);
   });
 
-  const s = document.createElement('style');
-  s.textContent = `@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}`;
-  document.head.appendChild(s);
+  const st = document.createElement('style');
+  st.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}';
+  document.head.appendChild(st);
+
+  // Init
+  loadPrices();
 </script>
 </body>
 </html>
