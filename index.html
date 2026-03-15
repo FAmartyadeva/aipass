@@ -390,29 +390,32 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkD8MuqKC1Pl-hiDmzBOfjxRYo-YkwXrJdkWeU3u6fYUGCQY-WuLmt1KL9swzYxhzo/exec';
   const ADMIN_PW = 'admin123#';
 
-  // ── PRICE STATE (loaded from localStorage) ──
+  // ── PRICE STATE (synced with Google Sheets) ──
   let prices = { sell: 100000, orig: 343000 };
-  function loadPrices() {
-    const saved = localStorage.getItem('aipass_prices');
-    if (saved) prices = JSON.parse(saved);
-    renderPrices();
-  }
-  function savePrices() { localStorage.setItem('aipass_prices', JSON.stringify(prices)); }
 
   function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function calcDisc(sell, orig) { return Math.round((1 - sell/orig) * 100); }
 
   function renderPrices() {
     const disc = calcDisc(prices.sell, prices.orig);
-    // Home card
     document.getElementById('disp-sell').textContent = fmt(prices.sell);
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
     document.getElementById('disp-disc').textContent = 'hemat ' + disc + '%';
-    // Form chip
     document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + '/bulan';
-    // Payment page
     document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
     document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
+  }
+
+  async function loadPrices() {
+    try {
+      const res = await fetch(APPS_SCRIPT_URL);
+      const data = await res.json();
+      if (data.sell && data.orig) {
+        prices.sell = data.sell;
+        prices.orig = data.orig;
+      }
+    } catch(e) { /* use defaults if fetch fails */ }
+    renderPrices();
   }
 
   // ── ADMIN ──
@@ -453,21 +456,38 @@
     document.getElementById('prev-disc').textContent = 'hemat ' + d + '%';
   }
 
-  function saveAdminPrices() {
+  async function saveAdminPrices() {
     const s = parseInt(document.getElementById('admin-sell').value);
     const o = parseInt(document.getElementById('admin-orig').value);
     if (!s || s <= 0) { alert('Masukkan harga jual yang valid.'); return; }
     if (!o || o <= 0) { alert('Masukkan harga original yang valid.'); return; }
     if (s >= o) { alert('Harga jual harus lebih kecil dari harga original.'); return; }
-    prices.sell = s;
-    prices.orig = o;
-    savePrices();
-    renderPrices();
-    document.getElementById('cur-sell').textContent = 'Rp ' + fmt(s);
-    document.getElementById('cur-orig').textContent = 'Rp ' + fmt(o);
-    const msg = document.getElementById('admin-msg');
-    msg.textContent = '✓ Harga berhasil disimpan!';
-    setTimeout(() => msg.textContent = '', 3000);
+
+    const saveBtn = document.querySelector('.admin-save-btn');
+    saveBtn.textContent = 'Menyimpan...';
+    saveBtn.disabled = true;
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'updatePrices', sell: s, orig: o })
+      });
+      const result = await res.json();
+      if (result.result === 'success') {
+        prices.sell = s;
+        prices.orig = o;
+        renderPrices();
+        document.getElementById('cur-sell').textContent = 'Rp ' + fmt(s);
+        document.getElementById('cur-orig').textContent = 'Rp ' + fmt(o);
+        const msg = document.getElementById('admin-msg');
+        msg.textContent = '✓ Harga berhasil disimpan & disinkronkan!';
+        setTimeout(() => msg.textContent = '', 3000);
+      } else { throw new Error(result.error); }
+    } catch(err) {
+      alert('Gagal menyimpan: ' + err.message);
+    }
+    saveBtn.textContent = 'Simpan Perubahan';
+    saveBtn.disabled = false;
   }
 
   // ── CUSTOMER FLOW ──
