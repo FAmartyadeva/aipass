@@ -415,41 +415,18 @@
     document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
   }
 
-  function loadPrices() {
-    return new Promise((resolve) => {
-      const callbackName = 'jsonpCallback_' + Date.now();
-      const script = document.createElement('script');
-      const timeout = setTimeout(() => {
-        cleanup();
-        console.log('Price load timed out, using defaults');
-        renderPrices();
-        resolve();
-      }, 5000);
-
-      function cleanup() {
-        clearTimeout(timeout);
-        delete window[callbackName];
-        if (script.parentNode) script.parentNode.removeChild(script);
+  async function loadPrices() {
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, { redirect: 'follow' });
+      const data = await res.json();
+      if (data.sell && data.orig) {
+        prices.sell = Number(data.sell);
+        prices.orig = Number(data.orig);
       }
-
-      window[callbackName] = function(data) {
-        cleanup();
-        if (data && data.sell && data.orig) {
-          prices.sell = Number(data.sell);
-          prices.orig = Number(data.orig);
-        }
-        renderPrices();
-        resolve();
-      };
-
-      script.src = APPS_SCRIPT_URL + '?callback=' + callbackName;
-      script.onerror = function() {
-        cleanup();
-        renderPrices();
-        resolve();
-      };
-      document.head.appendChild(script);
-    });
+    } catch(e) {
+      console.log('Using default prices:', e);
+    }
+    renderPrices();
   }
 
   // ── ADMIN ──
