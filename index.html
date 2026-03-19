@@ -405,7 +405,7 @@
 </footer>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYGKGGh8xWO7f9UT19GlNhscxJXj0Ah37D_dJ0KU8fxVQnudkxOlWOe_El36RNRUFF/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhRi6-2nAqBJJ4NI9bxXvcR9iAa6Hq-Mbpt2dZsFoshsL6YLoK7o6HvMdMqlh8NIHO/exec';
   const ADMIN_PW = 'admin123#';
 
   // ── PRICE STATE (synced with Google Sheets) ──
@@ -425,32 +425,19 @@
     document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
   }
 
-  function loadPrices() {
-    return new Promise((resolve) => {
-      const cb = 'aipass_cb_' + Date.now();
-      const script = document.createElement('script');
-      const timer = setTimeout(() => {
-        cleanup(); renderPrices(); resolve();
-      }, 6000);
-      function cleanup() {
-        clearTimeout(timer);
-        delete window[cb];
-        if (script.parentNode) script.parentNode.removeChild(script);
+  async function loadPrices() {
+    try {
+      const res = await fetch(APPS_SCRIPT_URL + '?action=getPrices', { method: 'GET', mode: 'cors' });
+      const data = await res.json();
+      if (data.sell && data.orig) {
+        prices.sell = Number(data.sell);
+        prices.orig = Number(data.orig);
+        if (data.duration) prices.duration = data.duration;
       }
-      window[cb] = function(data) {
-        cleanup();
-        if (data && data.sell && data.orig) {
-          prices.sell = Number(data.sell);
-          prices.orig = Number(data.orig);
-          if (data.duration) prices.duration = data.duration;
-        }
-        renderPrices();
-        resolve();
-      };
-      script.src = APPS_SCRIPT_URL + '?callback=' + cb;
-      script.onerror = function() { cleanup(); renderPrices(); resolve(); };
-      document.head.appendChild(script);
-    });
+    } catch(e) {
+      console.log('Price fetch error:', e);
+    }
+    renderPrices();
   }
 
   // ── ADMIN ──
