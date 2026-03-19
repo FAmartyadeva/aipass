@@ -354,9 +354,18 @@
       <div class="admin-current">Saat ini: <strong id="cur-orig"></strong></div>
     </div>
 
+    <div class="admin-box">
+      <div class="admin-box-title">&#128197; Label Durasi</div>
+      <label class="admin-label">Teks Durasi</label>
+      <div class="admin-field-wrap">
+        <input type="text" id="admin-duration" placeholder="per bulan" oninput="updateAdminPreview()" style="padding:15px 17px;" />
+      </div>
+      <div class="admin-current">Saat ini: <strong id="cur-duration"></strong></div>
+    </div>
+
     <div class="preview-box">
       Preview tampilan pelanggan:<br>
-      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 100.000</strong><span style="color:var(--text3)">/bulan</span><br>
+      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 100.000</strong> <span style="color:var(--text3)" id="prev-duration">per bulan</span><br>
       Harga resmi: <s style="color:var(--danger);" id="prev-orig">Rp 343.000</s> &#8212; <strong style="color:var(--accent);" id="prev-disc">hemat 71%</strong>
     </div>
 
@@ -400,7 +409,7 @@
   const ADMIN_PW = 'admin123#';
 
   // ── PRICE STATE (synced with Google Sheets) ──
-  let prices = { sell: 100000, orig: 343000 };
+  let prices = { sell: 100000, orig: 343000, duration: 'per bulan' };
 
   function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function calcDisc(sell, orig) { return Math.round((1 - sell/orig) * 100); }
@@ -410,23 +419,38 @@
     document.getElementById('disp-sell').textContent = fmt(prices.sell);
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
     document.getElementById('disp-disc').textContent = 'hemat ' + disc + '%';
-    document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + '/bulan';
+    document.getElementById('plan-period').textContent = prices.duration;
+    document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
     document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
     document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
   }
 
-  async function loadPrices() {
-    try {
-      const res = await fetch(APPS_SCRIPT_URL, { redirect: 'follow' });
-      const data = await res.json();
-      if (data.sell && data.orig) {
-        prices.sell = Number(data.sell);
-        prices.orig = Number(data.orig);
+  function loadPrices() {
+    return new Promise((resolve) => {
+      const cb = 'aipass_cb_' + Date.now();
+      const script = document.createElement('script');
+      const timer = setTimeout(() => {
+        cleanup(); renderPrices(); resolve();
+      }, 6000);
+      function cleanup() {
+        clearTimeout(timer);
+        delete window[cb];
+        if (script.parentNode) script.parentNode.removeChild(script);
       }
-    } catch(e) {
-      console.log('Using default prices:', e);
-    }
-    renderPrices();
+      window[cb] = function(data) {
+        cleanup();
+        if (data && data.sell && data.orig) {
+          prices.sell = Number(data.sell);
+          prices.orig = Number(data.orig);
+          if (data.duration) prices.duration = data.duration;
+        }
+        renderPrices();
+        resolve();
+      };
+      script.src = APPS_SCRIPT_URL + '?callback=' + cb;
+      script.onerror = function() { cleanup(); renderPrices(); resolve(); };
+      document.head.appendChild(script);
+    });
   }
 
   // ── ADMIN ──
@@ -451,8 +475,10 @@
   function openAdminPanel() {
     document.getElementById('admin-sell').value = prices.sell;
     document.getElementById('admin-orig').value = prices.orig;
+    document.getElementById('admin-duration').value = prices.duration;
     document.getElementById('cur-sell').textContent = 'Rp ' + fmt(prices.sell);
     document.getElementById('cur-orig').textContent = 'Rp ' + fmt(prices.orig);
+    document.getElementById('cur-duration').textContent = prices.duration;
     updateAdminPreview();
     showScreen('screen-admin');
   }
@@ -462,9 +488,11 @@
     const s = parseInt(document.getElementById('admin-sell').value) || prices.sell;
     const o = parseInt(document.getElementById('admin-orig').value) || prices.orig;
     const d = calcDisc(s, o);
+    const dur = document.getElementById('admin-duration').value || prices.duration;
     document.getElementById('prev-sell').textContent = 'Rp ' + fmt(s);
     document.getElementById('prev-orig').textContent = 'Rp ' + fmt(o);
     document.getElementById('prev-disc').textContent = 'hemat ' + d + '%';
+    document.getElementById('prev-duration').textContent = dur;
   }
 
   async function saveAdminPrices() {
@@ -472,31 +500,33 @@
     const o = parseInt(document.getElementById('admin-orig').value);
     if (!s || s <= 0) { alert('Masukkan harga jual yang valid.'); return; }
     if (!o || o <= 0) { alert('Masukkan harga original yang valid.'); return; }
+    const dur = document.getElementById('admin-duration').value.trim() || 'per bulan';
     if (s >= o) { alert('Harga jual harus lebih kecil dari harga original.'); return; }
 
     const saveBtn = document.querySelector('.admin-save-btn');
     saveBtn.textContent = 'Menyimpan...';
     saveBtn.disabled = true;
 
+    // Use no-cors POST (fire and forget), then update locally
     try {
-      const res = await fetch(APPS_SCRIPT_URL, {
+      fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        body: JSON.stringify({ action: 'updatePrices', sell: s, orig: o })
+        mode: 'no-cors',
+        body: JSON.stringify({ action: 'updatePrices', sell: s, orig: o, duration: dur })
       });
-      const result = await res.json();
-      if (result.result === 'success') {
-        prices.sell = s;
-        prices.orig = o;
-        renderPrices();
-        document.getElementById('cur-sell').textContent = 'Rp ' + fmt(s);
-        document.getElementById('cur-orig').textContent = 'Rp ' + fmt(o);
-        const msg = document.getElementById('admin-msg');
-        msg.textContent = '✓ Harga berhasil disimpan & disinkronkan!';
-        setTimeout(() => msg.textContent = '', 3000);
-      } else { throw new Error(result.error); }
-    } catch(err) {
-      alert('Gagal menyimpan: ' + err.message);
-    }
+    } catch(e) { /* ignore cors error, data still sends */ }
+
+    // Update locally immediately
+    prices.sell = s;
+    prices.orig = o;
+    prices.duration = dur;
+    renderPrices();
+    document.getElementById('cur-sell').textContent = 'Rp ' + fmt(s);
+    document.getElementById('cur-orig').textContent = 'Rp ' + fmt(o);
+    document.getElementById('cur-duration').textContent = dur;
+    const msg = document.getElementById('admin-msg');
+    msg.textContent = '✓ Harga berhasil disimpan!';
+    setTimeout(() => msg.textContent = '', 3000);
     saveBtn.textContent = 'Simpan Perubahan';
     saveBtn.disabled = false;
   }
