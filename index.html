@@ -53,7 +53,7 @@
   .plan-wrap { display: flex; justify-content: center; padding: 0 24px 100px; animation: fadeUp 0.7s 0.1s ease both; }
   .plan-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 420px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; text-align: center; position: relative; overflow: hidden; }
   .plan-card:hover { transform: scale(1.02); box-shadow: 0 32px 80px rgba(0,0,0,0.7); border-color: rgba(48,209,88,0.4); }
-  .plan-card::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(48,209,88,0.5), transparent); }
+  .plan-card::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 66%; height: 1px; background: linear-gradient(90deg, transparent, rgba(48,209,88,0.5), transparent); }
   .plan-badge { display: inline-block; background: var(--accent); color: #000; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 24px; }
   .plan-icon { font-size: 3.2rem; margin-bottom: 16px; display: block; }
   .plan-name { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 8px; }
@@ -205,9 +205,9 @@
       <div class="plan-name">Claude Pro</div>
       <p class="plan-desc">AI frontier dari Anthropic — konteks panjang, reasoning cepat, analisis dokumen.</p>
       <span class="plan-type">Shared Account</span>
-      <div class="plan-price"><sup>Rp</sup><span id="disp-sell">150.000</span></div>
+      <div class="plan-price"><sup>Rp</sup><span id="disp-sell">125.000</span></div>
       <div class="plan-period" id="plan-period">per bulan</div>
-      <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 371.000</s> — <strong id="disp-disc">hemat 60%</strong></div>
+      <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 371.000</s> — <strong id="disp-disc">hemat 66%</strong></div>
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
   </div>
@@ -220,7 +220,7 @@
     <div class="step-indicator">Langkah 1 dari 2</div>
     <h2>Data Kamu</h2>
     <p class="panel-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
-    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 150.000/bulan</span></div>
+    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 125.000/bulan</span></div>
     <div class="field">
       <label>Nama Lengkap</label>
       <input type="text" id="inp-name" placeholder="Budi Santoso" autocomplete="name" />
@@ -261,7 +261,7 @@
       <div class="bank-title">Detail Pembayaran</div>
       <div class="bank-row"><span class="bk">Bank</span><span class="bv">Bank Central Asia (BCA)</span></div>
       <div class="bank-row"><span class="bk">Atas Nama</span><span class="bv">Finandi Amartya Deva</span></div>
-      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green" id="pay-amount">Rp 150.000</span></div>
+      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green" id="pay-amount">Rp 125.000</span></div>
       <div class="rekening-box">
         <div>
           <div style="font-size:0.72rem;color:var(--text3);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;">Nomor Rekening</div>
@@ -272,7 +272,7 @@
     </div>
     <div class="steps" style="text-align:left;">
       <div class="step"><div class="step-n">1</div><div class="step-t">Buka aplikasi m-banking atau bank kamu</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong id="pay-amount-step">Rp 150.000</strong> ke rekening BCA di atas</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong id="pay-amount-step">Rp 125.000</strong> ke rekening BCA di atas</div></div>
       <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Screenshot bukti pembayaran</strong> lalu upload di bawah ini</div></div>
     </div>
     <div class="confirm-note" style="margin-bottom:20px; text-align:left;">
@@ -354,8 +354,8 @@
 
     <div class="preview-box">
       Preview tampilan pelanggan:<br>
-      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 150.000</strong> <span style="color:var(--text3)" id="prev-duration">per bulan</span><br>
-      Harga resmi: <s style="color:var(--danger);" id="prev-orig">Rp 371.000</s> &#8212; <strong style="color:var(--accent);" id="prev-disc">hemat 60%</strong>
+      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 125.000</strong> <span style="color:var(--text3)" id="prev-duration">per bulan</span><br>
+      Harga resmi: <s style="color:var(--danger);" id="prev-orig">Rp 371.000</s> &#8212; <strong style="color:var(--accent);" id="prev-disc">hemat 66%</strong>
     </div>
 
     <button class="admin-save-btn" onclick="saveAdminPrices()">Simpan Perubahan</button>
