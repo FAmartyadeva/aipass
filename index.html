@@ -205,12 +205,32 @@
       <div class="plan-name">Claude Pro</div>
       <p class="plan-desc">AI frontier dari Anthropic — konteks panjang, reasoning cepat, analisis dokumen.</p>
       <span class="plan-type">Shared Account</span>
-      <div class="plan-price"><sup>Rp</sup><span id="disp-sell">125.000</span></div>
+      <div class="plan-price"><sup>Rp</sup><span id="disp-sell">175.000</span></div>
       <div class="plan-period" id="plan-period">per bulan</div>
-      <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 410.000</s> — <strong id="disp-disc">hemat 70%</strong></div>
+      <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 410.000</s> — <strong id="disp-disc">hemat ~60%</strong></div>
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
   </div>
+
+  <!-- DISCOUNT CALLOUT -->
+  <div style="display:flex;justify-content:center;padding:0 24px 80px;animation:fadeUp 0.7s 0.2s ease both;">
+    <div style="background:linear-gradient(135deg,rgba(255,159,10,0.12),rgba(255,69,58,0.08));border:0.5px solid rgba(255,159,10,0.4);border-radius:20px;padding:24px 28px;max-width:420px;width:100%;text-align:center;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ff9f0a;margin-bottom:10px;">🎉 Penawaran Spesial</div>
+      <div style="font-size:1.3rem;font-weight:700;letter-spacing:-0.02em;color:#f5f5f7;margin-bottom:6px;">Diskon Rp 25.000</div>
+      <div style="font-size:0.95rem;color:#a1a1a6;margin-bottom:16px;line-height:1.6;">
+        Dapatkan Claude Pro hanya <strong style="color:#f5f5f7;">Rp 150.000/bulan</strong><br>
+        dengan menghubungi admin sebelum checkout.
+      </div>
+      <a href="https://wa.me/+6282325664611?text=Halo%2C%20saya%20mau%20tanya%20diskon%20Rp%2025.000%20untuk%20Claude%20Pro"
+        target="_blank"
+        style="display:inline-flex;align-items:center;gap:8px;background:#ff9f0a;color:#000;padding:12px 22px;border-radius:100px;font-size:0.88rem;font-weight:700;text-decoration:none;transition:all 0.2s;letter-spacing:-0.01em;"
+        onmouseover="this.style.filter='brightness(1.1)'"
+        onmouseout="this.style.filter='brightness(1)'">
+        💬 Hubungi Admin untuk Diskon
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <!-- FORM -->
@@ -220,7 +240,7 @@
     <div class="step-indicator">Langkah 1 dari 2</div>
     <h2>Data Kamu</h2>
     <p class="panel-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
-    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 125.000/bulan</span></div>
+    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 175.000/bulan</span></div>
     <div class="field">
       <label>Nama Lengkap</label>
       <input type="text" id="inp-name" placeholder="Budi Santoso" autocomplete="name" />
@@ -261,7 +281,7 @@
       <div class="bank-title">Detail Pembayaran</div>
       <div class="bank-row"><span class="bk">Bank</span><span class="bv">Bank Central Asia (BCA)</span></div>
       <div class="bank-row"><span class="bk">Atas Nama</span><span class="bv">Finandi Amartya Deva</span></div>
-      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green" id="pay-amount">Rp 125.000</span></div>
+      <div class="bank-row"><span class="bk">Jumlah Transfer</span><span class="bv green" id="pay-amount">Rp 175.000</span></div>
       <div class="rekening-box">
         <div>
           <div style="font-size:0.72rem;color:var(--text3);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;">Nomor Rekening</div>
@@ -272,7 +292,7 @@
     </div>
     <div class="steps" style="text-align:left;">
       <div class="step"><div class="step-n">1</div><div class="step-t">Buka aplikasi m-banking atau bank kamu</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong id="pay-amount-step">Rp 125.000</strong> ke rekening BCA di atas</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Transfer <strong id="pay-amount-step">Rp 175.000</strong> ke rekening BCA di atas</div></div>
       <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Screenshot bukti pembayaran</strong> lalu upload di bawah ini</div></div>
     </div>
     <div class="confirm-note" style="margin-bottom:20px; text-align:left;">
@@ -328,7 +348,7 @@
       <label class="admin-label">Harga Produk (Rp)</label>
       <div class="admin-field-wrap">
         <span class="admin-prefix">Rp</span>
-        <input type="number" id="admin-sell" placeholder="125000" oninput="updateAdminPreview()" />
+        <input type="number" id="admin-sell" placeholder="175000" oninput="updateAdminPreview()" />
       </div>
       <div class="admin-current">Saat ini: <strong id="cur-sell"></strong></div>
     </div>
@@ -338,7 +358,7 @@
       <label class="admin-label">Harga Original (Rp)</label>
       <div class="admin-field-wrap">
         <span class="admin-prefix">Rp</span>
-        <input type="number" id="admin-orig" placeholder="355000" oninput="updateAdminPreview()" />
+        <input type="number" id="admin-orig" placeholder="410000" oninput="updateAdminPreview()" />
       </div>
       <div class="admin-current">Saat ini: <strong id="cur-orig"></strong></div>
     </div>
@@ -354,7 +374,7 @@
 
     <div class="preview-box">
       Preview tampilan pelanggan:<br>
-      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 125.000</strong> <span style="color:var(--text3)" id="prev-duration">per bulan</span><br>
+      <strong style="color:var(--text);font-size:1.05rem;" id="prev-sell">Rp 175.000</strong> <span style="color:var(--text3)" id="prev-duration">per bulan</span><br>
       Harga resmi: <s style="color:var(--danger);" id="prev-orig">Rp 410.000</s> &#8212; <strong style="color:var(--accent);" id="prev-disc">hemat 66%</strong>
     </div>
 
@@ -398,16 +418,16 @@
   const ADMIN_PW = 'admin123#';
 
   // ── PRICE STATE (synced with Google Sheets) ──
-  let prices = { sell: 125000, orig: 355000, duration: 'per bulan' };
+  let prices = { sell: 175000, orig: 410000, duration: 'per bulan' };
 
   function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-  function calcDisc(sell, orig) { return Math.round((1 - sell/orig) * 100); }
+  function calcDisc(sell, orig) { return Math.ceil((1 - sell/orig) * 10) * 10; }
 
   function renderPrices() {
     const disc = calcDisc(prices.sell, prices.orig);
     document.getElementById('disp-sell').textContent = fmt(prices.sell);
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
-    document.getElementById('disp-disc').textContent = 'hemat ' + disc + '%';
+    document.getElementById('disp-disc').textContent = 'hemat ~' + disc + '%';
     document.getElementById('plan-period').textContent = prices.duration;
     document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
     document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
