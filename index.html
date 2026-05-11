@@ -208,26 +208,55 @@
       <div class="plan-price"><sup>Rp</sup><span id="disp-sell">175.000</span></div>
       <div class="plan-period" id="plan-period">per bulan</div>
       <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 410.000</s> — <strong id="disp-disc">hemat ~60%</strong></div>
+
+      <!-- Discount inline inside card -->
+      <div style="background:rgba(255,159,10,0.1);border:0.5px solid rgba(255,159,10,0.35);border-radius:10px;padding:10px 14px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="text-align:left;">
+          <div style="font-size:0.7rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
+          <div style="font-size:0.88rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 150.000</strong>/bulan</div>
+        </div>
+        <button onclick="event.stopPropagation();window.open('https://wa.me/+6282325664611?text=Halo%2C%20saya%20mau%20tanya%20diskon%20Rp%2025.000%20untuk%20Claude%20Pro','_blank');"
+          style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
+          Klaim →
+        </button>
+      </div>
+
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
   </div>
 
-  <!-- DISCOUNT CALLOUT -->
+  <!-- TRUST SECTION — compact -->
   <div style="display:flex;justify-content:center;padding:0 24px 80px;animation:fadeUp 0.7s 0.2s ease both;">
-    <div style="background:linear-gradient(135deg,rgba(255,159,10,0.12),rgba(255,69,58,0.08));border:0.5px solid rgba(255,159,10,0.4);border-radius:20px;padding:24px 28px;max-width:420px;width:100%;text-align:center;">
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ff9f0a;margin-bottom:10px;">🎉 Penawaran Spesial</div>
-      <div style="font-size:1.3rem;font-weight:700;letter-spacing:-0.02em;color:#f5f5f7;margin-bottom:6px;">Diskon Rp 25.000</div>
-      <div style="font-size:0.95rem;color:#a1a1a6;margin-bottom:16px;line-height:1.6;">
-        Dapatkan Claude Pro hanya <strong style="color:#f5f5f7;">Rp 150.000/bulan</strong><br>
-        dengan menghubungi admin sebelum checkout.
+    <div style="max-width:420px;width:100%;">
+
+      <!-- 3 trust pills -->
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(48,209,88,0.08);border:0.5px solid rgba(48,209,88,0.2);padding:7px 12px;border-radius:100px;font-size:0.78rem;color:#a1a1a6;">
+          <span style="color:#30d158;">✓</span> Akun dijamin aktif
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(48,209,88,0.08);border:0.5px solid rgba(48,209,88,0.2);padding:7px 12px;border-radius:100px;font-size:0.78rem;color:#a1a1a6;">
+          <span style="color:#30d158;">✓</span> Pengiriman cepat
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(48,209,88,0.08);border:0.5px solid rgba(48,209,88,0.2);padding:7px 12px;border-radius:100px;font-size:0.78rem;color:#a1a1a6;">
+          <span style="color:#30d158;">✓</span> Ada CS aktif
+        </div>
       </div>
-      <a href="https://wa.me/+6282325664611?text=Halo%2C%20saya%20mau%20tanya%20diskon%20Rp%2025.000%20untuk%20Claude%20Pro"
-        target="_blank"
-        style="display:inline-flex;align-items:center;gap:8px;background:#ff9f0a;color:#000;padding:12px 22px;border-radius:100px;font-size:0.88rem;font-weight:700;text-decoration:none;transition:all 0.2s;letter-spacing:-0.01em;"
-        onmouseover="this.style.filter='brightness(1.1)'"
-        onmouseout="this.style.filter='brightness(1)'">
-        💬 Hubungi Admin untuk Diskon
-      </a>
+
+      <!-- Test login strip -->
+      <div style="background:rgba(10,132,255,0.07);border:0.5px solid rgba(10,132,255,0.25);border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+        <div>
+          <div style="font-size:0.82rem;font-weight:700;color:#f5f5f7;margin-bottom:3px;">🛡️ Masih ragu? Test login dulu!</div>
+          <div style="font-size:0.75rem;color:#6e6e73;line-height:1.5;">Wajib bayar <strong style="color:#a1a1a6;">dalam 10 menit</strong> setelah login</div>
+        </div>
+        <a href="https://wa.me/+6282325664611?text=Halo%20kak%2C%20saya%20mau%20test%20login%20dulu%20sebelum%20beli%20Claude%20Pro.%20Saya%20siap%20bayar%20dalam%2010%20menit%20setelah%20berhasil%20login."
+          target="_blank"
+          style="flex-shrink:0;background:#0a84ff;color:#fff;padding:10px 16px;border-radius:10px;font-size:0.82rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:all 0.2s;"
+          onmouseover="this.style.filter='brightness(1.15)'"
+          onmouseout="this.style.filter='brightness(1)'">
+          💬 Chat
+        </a>
+      </div>
+
     </div>
   </div>
 
