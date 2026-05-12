@@ -50,8 +50,8 @@
   .hero-sub { font-size: 1.15rem; color: var(--text2); max-width: 460px; margin: 0 auto 52px; line-height: 1.65; font-weight: 400; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
   .section-label { text-align: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text3); text-transform: uppercase; margin-bottom: 24px; }
-  .plan-wrap { display: flex; justify-content: center; padding: 0 24px 100px; animation: fadeUp 0.7s 0.1s ease both; }
-  .plan-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 28px; padding: 48px 44px; width: 100%; max-width: 420px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; text-align: center; position: relative; overflow: hidden; }
+  .plan-wrap { display: flex; justify-content: center; gap: 20px; padding: 0 24px 40px; animation: fadeUp 0.7s 0.1s ease both; flex-wrap: wrap; }
+  .plan-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 24px; padding: 36px 28px; width: 100%; max-width: 340px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; text-align: center; position: relative; overflow: hidden; }
   .plan-card:hover { transform: scale(1.02); box-shadow: 0 32px 80px rgba(0,0,0,0.7); border-color: rgba(48,209,88,0.4); }
   .plan-card::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 66%; height: 1px; background: linear-gradient(90deg, transparent, rgba(48,209,88,0.5), transparent); }
   .plan-badge { display: inline-block; background: var(--accent); color: #000; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 24px; }
@@ -168,8 +168,10 @@
     .hero { padding: 64px 20px 48px; }
     .hero h1 { font-size: 2.3rem; }
     .hero-sub { font-size: 1rem; }
-    .plan-wrap { padding: 0 16px 72px; }
-    .plan-card { padding: 36px 28px; }
+    .plan-wrap { padding: 0 16px 32px; gap: 14px; }
+    .plan-card { padding: 28px 20px; max-width: 100%; }
+    .plan-name { font-size: 1.4rem; }
+    .plan-price { font-size: 2.2rem; }
     .panel { padding: 32px 22px; border-radius: 22px; }
     .panel h2 { font-size: 1.7rem; }
     .screen { padding: 24px 14px; align-items: flex-start; min-height: unset; }
@@ -199,30 +201,50 @@
   </div>
   <div class="section-label">Pilih Plan</div>
   <div class="plan-wrap">
-    <div class="plan-card" onclick="goToForm()">
+
+    <!-- CARD 1: Shared -->
+    <div class="plan-card" onclick="selectPlan('shared')">
       <span class="plan-badge">Best Value</span>
       <span class="plan-icon">🧠</span>
-      <div class="plan-name">Claude Pro</div>
-      <p class="plan-desc">AI frontier dari Anthropic — konteks panjang, reasoning cepat, analisis dokumen.</p>
+      <div class="plan-name">Claude Pro Shared</div>
+      <p class="plan-desc">Konteks panjang, reasoning cepat, analisis dokumen.</p>
       <span class="plan-type">Shared Account</span>
       <div class="plan-price"><sup>Rp</sup><span id="disp-sell">175.000</span></div>
       <div class="plan-period" id="plan-period">per bulan</div>
       <div class="plan-saving">Harga resmi: <s id="disp-orig">Rp 410.000</s> — <strong id="disp-disc">hemat ~60%</strong></div>
-
-      <!-- Discount inline inside card -->
       <div style="background:rgba(255,159,10,0.1);border:0.5px solid rgba(255,159,10,0.35);border-radius:10px;padding:10px 14px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <div style="text-align:left;">
-          <div style="font-size:0.7rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
-          <div style="font-size:0.88rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 150.000</strong>/bulan</div>
+          <div style="font-size:0.68rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
+          <div style="font-size:0.85rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 150.000</strong>/bulan</div>
         </div>
         <button onclick="event.stopPropagation();window.open('https://wa.me/+6282325664611?text=Halo%2C%20saya%20mau%20tanya%20diskon%20Rp%2025.000%20untuk%20Claude%20Pro','_blank');"
-          style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
+          style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
           Klaim →
         </button>
       </div>
-
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
+
+    <!-- CARD 2: Private -->
+    <div class="plan-card" onclick="selectPlan('private')" style="border-color:rgba(91,141,255,0.35);">
+      <span class="plan-badge" style="background:linear-gradient(135deg,#5b8dff,#a855f7);color:#fff;">👑 Premium</span>
+      <span class="plan-icon">🔒</span>
+      <div class="plan-name">Claude Pro Private</div>
+      <p class="plan-desc">Akun Claude milik kamu sendiri — full control, no sharing, limit penuh.</p>
+      <span class="plan-type">Private Account</span>
+      <div class="plan-price" style="color:#5b8dff;"><sup>Rp</sup>390.000</div>
+      <div class="plan-period">per bulan</div>
+      <div class="plan-saving">Harga resmi: <s style="color:var(--danger);">Rp 410.000</s> — <strong style="color:#5b8dff;">hemat ~5%</strong></div>
+      <div style="background:rgba(91,141,255,0.07);border:0.5px solid rgba(91,141,255,0.2);border-radius:10px;padding:12px 14px;margin-bottom:20px;text-align:left;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#5b8dff;font-size:0.9rem;">✓</span> Akun milik kamu sendiri</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#5b8dff;font-size:0.9rem;">✓</span> Tidak ada sharing user lain</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#5b8dff;font-size:0.9rem;">✓</span> Full usage limit untuk kamu</div>
+        </div>
+      </div>
+      <button class="plan-cta">Beli Sekarang →</button>
+    </div>
+
   </div>
 
   <!-- TRUST SECTION — compact -->
@@ -268,8 +290,8 @@
     <button class="panel-back" onclick="goHome()">&#8249; Kembali</button>
     <div class="step-indicator">Langkah 1 dari 2</div>
     <h2>Data Kamu</h2>
-    <p class="panel-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
-    <div class="chip">🧠 Claude Pro Shared &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 175.000/bulan</span></div>
+    <p class="panel-sub" id="form-sub">Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.</p>
+    <div class="chip"><span id="chip-icon">🧠</span> <span id="chip-label">Claude Pro Shared</span> &nbsp;·&nbsp; <span id="chip-price" style="color:var(--text3)">Rp 175.000/bulan</span></div>
     <div class="field">
       <label>Nama Lengkap</label>
       <input type="text" id="inp-name" placeholder="Budi Santoso" autocomplete="name" />
@@ -281,6 +303,11 @@
     <div class="field">
       <label>Nomor WhatsApp Aktif</label>
       <input type="tel" id="inp-phone" placeholder="08xxxxxxxxxx" autocomplete="tel" />
+    </div>
+    <!-- Note for private account -->
+    <div id="private-note" style="display:none;background:rgba(91,141,255,0.08);border:0.5px solid rgba(91,141,255,0.25);border-radius:12px;padding:14px 16px;margin-bottom:4px;font-size:0.85rem;color:#a1a1a6;line-height:1.6;">
+      <span style="color:#5b8dff;font-weight:600;">👑 Claude Pro Private</span><br>
+      Setelah pembayaran dikonfirmasi, kami akan upgrade akun Claude yang terdaftar pada email di atas menjadi Claude Pro.
     </div>
     <button class="cta-btn" onclick="goToPayment()">Lanjut ke Pembayaran &#8594;</button>
   </div>
@@ -445,7 +472,7 @@
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
     document.getElementById('disp-disc').textContent = 'hemat ~' + disc + '%';
     document.getElementById('plan-period').textContent = prices.duration;
-    document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
+    if (selectedPlan === 'shared') document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
     document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
     document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
   }
@@ -545,6 +572,23 @@
 
   // ── CUSTOMER FLOW ──
   let proofFile = null;
+  function selectPlan(type) {
+    selectedPlan = type;
+    if (type === 'shared') {
+      document.getElementById('chip-icon').textContent = '🧠';
+      document.getElementById('chip-label').textContent = 'Claude Pro Shared';
+      document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
+      document.getElementById('private-note').style.display = 'none';
+      document.getElementById('form-sub').textContent = 'Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.';
+    } else {
+      document.getElementById('chip-icon').textContent = '👑';
+      document.getElementById('chip-label').textContent = 'Claude Pro Private';
+      document.getElementById('chip-price').textContent = 'Rp 390.000 / bulan';
+      document.getElementById('private-note').style.display = 'block';
+      document.getElementById('form-sub').textContent = 'Masukkan email akun Claude kamu yang ingin di-upgrade ke Pro.';
+    }
+    showScreen('screen-form');
+  }
   function goToForm() { showScreen('screen-form'); }
   function goHome()   { showScreen('screen-home'); }
 
@@ -606,11 +650,12 @@
     setStatus('Mengupload bukti dan menyimpan pesanan...', '');
     try {
       const base64 = await toBase64(proofFile);
-      const payload = { name, email, phone, plan: 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan', fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
+      const planStr = selectedPlan === 'shared' ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan' : 'Claude Pro Private — Rp 390.000/bulan';
+      const payload = { name, email, phone, plan: planStr, fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
       const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
       const result = await response.json();
       if (result.result === 'success') {
-        document.getElementById('s-plan').textContent  = 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan';
+        document.getElementById('s-plan').textContent  = selectedPlan === 'shared' ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan' : 'Claude Pro Private — Rp 390.000/bulan';
         document.getElementById('s-name').textContent  = name;
         document.getElementById('s-email').textContent = email;
         document.getElementById('s-phone').textContent = phone;
