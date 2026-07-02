@@ -202,6 +202,29 @@
   <div class="section-label">Pilih Plan</div>
   <div class="plan-wrap">
 
+    <!-- CARD 0: Daily Private (paling atas/kiri) -->
+    <div class="plan-card" onclick="selectPlan('daily')" style="border-color:rgba(255,69,58,0.35);">
+      <span class="plan-badge" style="background:linear-gradient(135deg,#ff453a,#ff9f0a);color:#fff;">⚡ Harian</span>
+      <span class="plan-icon">📅</span>
+      <div class="plan-name">Claude Pro Private</div>
+      <p class="plan-desc">Akses Claude Pro Private untuk 1 hari — cocok untuk kebutuhan mendadak.</p>
+      <span class="plan-type">Private Account · Harian</span>
+      <div class="plan-price" style="color:#ff453a;"><sup>Rp</sup>50.000</div>
+      <div class="plan-period">per hari</div>
+      <div class="plan-saving">Harga resmi: <s style="color:var(--danger);">Rp <span id="disp-orig-daily">410.000</span></s> — <strong style="color:#ff453a;">hemat ~90%</strong></div>
+      <div style="background:rgba(255,69,58,0.08);border:0.5px solid rgba(255,69,58,0.3);border-radius:10px;padding:10px 14px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="text-align:left;">
+          <div style="font-size:0.68rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
+          <div style="font-size:0.85rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 40.000</strong>/hari</div>
+        </div>
+        <button onclick="event.stopPropagation();selectPlan('daily-discount');"
+          style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
+          Klaim →
+        </button>
+      </div>
+      <button class="plan-cta" style="background:linear-gradient(135deg,#ff453a,#ff9f0a);color:#fff;">Beli Sekarang →</button>
+    </div>
+
     <!-- CARD 1: Shared -->
     <div class="plan-card" onclick="selectPlan('shared')">
       <span class="plan-badge">Best Value</span>
@@ -217,7 +240,7 @@
           <div style="font-size:0.68rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
           <div style="font-size:0.85rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 150.000</strong>/bulan</div>
         </div>
-        <button onclick="event.stopPropagation();window.open('https://wa.me/+6282325664611?text=Halo%2C%20saya%20mau%20tanya%20diskon%20Rp%2025.000%20untuk%20Claude%20Pro','_blank');"
+        <button onclick="event.stopPropagation();selectPlan('discount');"
           style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
           Klaim →
         </button>
@@ -335,7 +358,7 @@
 
     <div class="steps" style="text-align:left;">
       <div class="step"><div class="step-n">1</div><div class="step-t">Buka aplikasi pembayaran kamu (GoPay, OVO, Dana, m-Banking, dll)</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Scan QR di atas dan bayar sebesar <strong>Rp 175.000</strong></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Scan QR di atas dan bayar sebesar <strong id="pay-amount-step">Rp 175.000</strong></div></div>
       <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Screenshot bukti pembayaran</strong> lalu upload di bawah ini</div></div>
     </div>
     <div class="confirm-note" style="margin-bottom:20px; text-align:left;">
@@ -471,6 +494,8 @@
     document.getElementById('disp-sell').textContent = fmt(prices.sell);
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
     document.getElementById('disp-disc').textContent = 'hemat ~' + disc + '%';
+    const dailyOrig = document.getElementById('disp-orig-daily');
+    if (dailyOrig) dailyOrig.textContent = fmt(prices.orig);
     document.getElementById('plan-period').textContent = prices.duration;
     if (selectedPlan === 'shared') document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
     document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
@@ -574,18 +599,40 @@
   let proofFile = null;
   function selectPlan(type) {
     selectedPlan = type;
+    const note = document.getElementById('private-note');
+    const sub  = document.getElementById('form-sub');
+    const icon = document.getElementById('chip-icon');
+    const lbl  = document.getElementById('chip-label');
+    const prc  = document.getElementById('chip-price');
+    note.style.display = 'none';
     if (type === 'shared') {
-      document.getElementById('chip-icon').textContent = '🧠';
-      document.getElementById('chip-label').textContent = 'Claude Pro Shared';
-      document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
-      document.getElementById('private-note').style.display = 'none';
-      document.getElementById('form-sub').textContent = 'Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.';
+      icon.textContent = '🧠';
+      lbl.textContent  = 'Claude Pro Shared';
+      prc.textContent  = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
+      sub.textContent  = 'Kredensial login akan dikirim ke email ini setelah pembayaran dikonfirmasi.';
+    } else if (type === 'discount') {
+      icon.textContent = '🎉';
+      lbl.textContent  = 'Claude Pro Shared — Diskon Spesial';
+      prc.textContent  = 'Rp 150.000 / ' + prices.duration;
+      sub.textContent  = 'Harga spesial Rp 150.000/bulan. Kredensial dikirim ke email ini setelah pembayaran dikonfirmasi.';
+    } else if (type === 'daily') {
+      icon.textContent = '📅';
+      lbl.textContent  = 'Claude Pro Private Harian';
+      prc.textContent  = 'Rp 50.000 / hari';
+      note.style.display = 'block';
+      sub.textContent  = 'Masukkan email akun Claude kamu yang ingin di-upgrade ke Pro untuk 1 hari.';
+    } else if (type === 'daily-discount') {
+      icon.textContent = '🎉';
+      lbl.textContent  = 'Claude Pro Private Harian — Diskon Spesial';
+      prc.textContent  = 'Rp 40.000 / hari';
+      note.style.display = 'block';
+      sub.textContent  = 'Harga spesial Rp 40.000/hari. Masukkan email akun Claude kamu yang ingin di-upgrade.';
     } else {
-      document.getElementById('chip-icon').textContent = '👑';
-      document.getElementById('chip-label').textContent = 'Claude Pro Private';
-      document.getElementById('chip-price').textContent = 'Rp 390.000 / bulan';
-      document.getElementById('private-note').style.display = 'block';
-      document.getElementById('form-sub').textContent = 'Masukkan email akun Claude kamu yang ingin di-upgrade ke Pro.';
+      icon.textContent = '👑';
+      lbl.textContent  = 'Claude Pro Private';
+      prc.textContent  = 'Rp 390.000 / bulan';
+      note.style.display = 'block';
+      sub.textContent  = 'Masukkan email akun Claude kamu yang ingin di-upgrade ke Pro.';
     }
     showScreen('screen-form');
   }
@@ -650,12 +697,28 @@
     setStatus('Mengupload bukti dan menyimpan pesanan...', '');
     try {
       const base64 = await toBase64(proofFile);
-      const planStr = selectedPlan === 'shared' ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan' : 'Claude Pro Private — Rp 390.000/bulan';
+      const planStr = selectedPlan === 'shared'
+        ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan'
+        : selectedPlan === 'discount'
+        ? 'Claude Pro Shared (Diskon) — Rp 150.000/bulan'
+        : selectedPlan === 'daily'
+        ? 'Claude Pro Private Harian — Rp 50.000/hari'
+        : selectedPlan === 'daily-discount'
+        ? 'Claude Pro Private Harian (Diskon) — Rp 40.000/hari'
+        : 'Claude Pro Private — Rp 390.000/bulan';
       const payload = { name, email, phone, plan: planStr, fileName: proofFile.name, fileType: proofFile.type, fileData: base64 };
       const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
       const result = await response.json();
       if (result.result === 'success') {
-        document.getElementById('s-plan').textContent  = selectedPlan === 'shared' ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan' : 'Claude Pro Private — Rp 390.000/bulan';
+        document.getElementById('s-plan').textContent  = selectedPlan === 'shared'
+          ? 'Claude Pro Shared — Rp ' + fmt(prices.sell) + '/bulan'
+          : selectedPlan === 'discount'
+          ? 'Claude Pro Shared (Diskon) — Rp 150.000/bulan'
+          : selectedPlan === 'daily'
+          ? 'Claude Pro Private Harian — Rp 50.000/hari'
+          : selectedPlan === 'daily-discount'
+          ? 'Claude Pro Private Harian (Diskon) — Rp 40.000/hari'
+          : 'Claude Pro Private — Rp 390.000/bulan';
         document.getElementById('s-name').textContent  = name;
         document.getElementById('s-email').textContent = email;
         document.getElementById('s-phone').textContent = phone;
