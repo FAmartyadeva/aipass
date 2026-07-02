@@ -498,8 +498,7 @@
     if (dailyOrig) dailyOrig.textContent = fmt(prices.orig);
     document.getElementById('plan-period').textContent = prices.duration;
     if (selectedPlan === 'shared') document.getElementById('chip-price').textContent = 'Rp ' + fmt(prices.sell) + ' / ' + prices.duration;
-    document.getElementById('pay-amount').textContent = 'Rp ' + fmt(prices.sell);
-    document.getElementById('pay-amount-step').textContent = 'Rp ' + fmt(prices.sell);
+    // pay-amount and pay-amount-step are set dynamically in goToPayment()
   }
 
   async function loadPrices() {
