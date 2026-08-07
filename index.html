@@ -260,6 +260,16 @@
       <div class="plan-price"><sup>Rp</sup><span id="disp-sell-weekly">175.000</span></div>
       <div class="plan-period">per minggu</div>
       <div class="plan-saving">Harga resmi: <s id="disp-orig-weekly">Rp 410.000</s> — <strong id="disp-disc-weekly">hemat ~60%</strong></div>
+      <div style="background:rgba(255,159,10,0.1);border:0.5px solid rgba(255,159,10,0.35);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="text-align:left;">
+          <div style="font-size:0.68rem;font-weight:700;color:#ff9f0a;text-transform:uppercase;letter-spacing:0.08em;">🎉 Diskon Spesial</div>
+          <div style="font-size:0.85rem;color:#f5f5f7;font-weight:600;margin-top:2px;">Jadi <strong>Rp 150.000</strong>/minggu</div>
+        </div>
+        <button onclick="event.stopPropagation();selectPlan('weekly-discount');"
+          style="flex-shrink:0;background:#ff9f0a;color:#000;padding:8px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;border:none;cursor:pointer;white-space:nowrap;">
+          Klaim →
+        </button>
+      </div>
       <div style="background:rgba(48,209,88,0.07);border:0.5px solid rgba(48,209,88,0.2);border-radius:10px;padding:12px 14px;margin-bottom:20px;text-align:left;">
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#30d158;font-size:0.9rem;">✓</span> Private account selama 1 minggu</div>
@@ -775,6 +785,7 @@
     if (type === 'daily') return { icon:'📅', name:'Claude Pro Private Harian', amount:50000, period:'per hari' };
     if (type === 'daily-discount') return { icon:'🎉', name:'Claude Pro Private Harian (Diskon)', amount:40000, period:'per hari' };
     if (type === 'weekly') return { icon:'🔐', name:'Claude Pro Private Mingguan', amount:prices.sell, period:'per minggu' };
+    if (type === 'weekly-discount') return { icon:'🎉', name:'Claude Pro Private Mingguan (Diskon)', amount:150000, period:'per minggu' };
     return { icon:'👑', name:'Claude Pro Private', amount:390000, period:'per bulan' };
   }
 
@@ -818,6 +829,12 @@
       prc.textContent  = 'Rp ' + fmt(prices.sell) + ' / minggu';
       note.style.display = 'block';
       sub.textContent  = 'Masukkan email akun Claude kamu yang ingin digunakan untuk Claude Pro Private selama 1 minggu.';
+    } else if (type === 'weekly-discount') {
+      icon.textContent = '🎉';
+      lbl.textContent  = 'Claude Pro Private Mingguan — Diskon Spesial';
+      prc.textContent  = 'Rp 150.000 / minggu';
+      note.style.display = 'block';
+      sub.textContent  = 'Harga spesial Rp 150.000/minggu. Masukkan email akun Claude kamu yang ingin digunakan untuk Claude Pro Private selama 1 minggu.';
     } else {
       icon.textContent = '👑';
       lbl.textContent  = 'Claude Pro Private';
