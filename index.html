@@ -248,7 +248,29 @@
       <button class="plan-cta">Beli Sekarang →</button>
     </div>
 
-    <!-- CARD 2: Private -->
+
+
+    <!-- CARD 2: Weekly Private -->
+    <div class="plan-card" id="plan-weekly-card" onclick="selectPlan('weekly')" style="border-color:rgba(48,209,88,0.35);">
+      <span class="plan-badge" style="background:linear-gradient(135deg,#30d158,#0a84ff);color:#000;">📆 Mingguan</span>
+      <span class="plan-icon">🔐</span>
+      <div class="plan-name">Claude Pro Private Mingguan</div>
+      <p class="plan-desc">Akses Claude Pro Private selama 1 minggu — akun khusus untuk kamu, tanpa sharing.</p>
+      <span class="plan-type">Private Account · Mingguan</span>
+      <div class="plan-price"><sup>Rp</sup><span id="disp-sell-weekly">175.000</span></div>
+      <div class="plan-period">per minggu</div>
+      <div class="plan-saving">Harga resmi: <s id="disp-orig-weekly">Rp 410.000</s> — <strong id="disp-disc-weekly">hemat ~60%</strong></div>
+      <div style="background:rgba(48,209,88,0.07);border:0.5px solid rgba(48,209,88,0.2);border-radius:10px;padding:12px 14px;margin-bottom:20px;text-align:left;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#30d158;font-size:0.9rem;">✓</span> Private account selama 1 minggu</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#30d158;font-size:0.9rem;">✓</span> Tidak sharing dengan user lain</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:0.82rem;color:#a1a1a6;"><span style="color:#30d158;font-size:0.9rem;">✓</span> Cocok untuk kebutuhan project singkat</div>
+        </div>
+      </div>
+      <button class="plan-cta">Beli Sekarang →</button>
+    </div>
+
+    <!-- CARD 3: Private -->
     <div class="plan-card" id="plan-private-card" onclick="selectPlan('private')" style="border-color:rgba(91,141,255,0.35);">
       <span class="plan-badge" style="background:linear-gradient(135deg,#5b8dff,#a855f7);color:#fff;">👑 Premium</span>
       <span class="plan-icon">🔒</span>
@@ -480,6 +502,10 @@
           <input type="checkbox" id="toggle-shared" checked style="width:20px;height:20px;accent-color:var(--accent);">
         </label>
         <label style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:0.92rem;color:var(--text2);cursor:pointer;">
+          <span>Claude Pro Private Mingguan</span>
+          <input type="checkbox" id="toggle-weekly" checked style="width:20px;height:20px;accent-color:var(--accent);">
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:0.92rem;color:var(--text2);cursor:pointer;">
           <span>Claude Pro Private Bulanan</span>
           <input type="checkbox" id="toggle-private" checked style="width:20px;height:20px;accent-color:var(--accent);">
         </label>
@@ -544,7 +570,7 @@
   let prices = { sell: 175000, orig: 410000, duration: 'per bulan' };
   let selectedPlan = 'shared';
   let settings = {
-    services: { daily: true, shared: true, private: true },
+    services: { daily: true, shared: true, weekly: true, private: true },
     scheduleUrl: 'https://youtube.com'
   };
 
@@ -559,7 +585,7 @@
   }
 
   function applySettings() {
-    const map = { daily: 'plan-daily-card', shared: 'plan-shared-card', private: 'plan-private-card' };
+    const map = { daily: 'plan-daily-card', shared: 'plan-shared-card', weekly: 'plan-weekly-card', private: 'plan-private-card' };
     Object.entries(map).forEach(([key, id]) => {
       const el = document.getElementById(id);
       if (el) el.style.display = settings.services[key] ? '' : 'none';
@@ -607,6 +633,12 @@
     document.getElementById('disp-sell').textContent = fmt(prices.sell);
     document.getElementById('disp-orig').textContent = 'Rp ' + fmt(prices.orig);
     document.getElementById('disp-disc').textContent = 'hemat ~' + disc + '%';
+    const weeklySell = document.getElementById('disp-sell-weekly');
+    const weeklyOrig = document.getElementById('disp-orig-weekly');
+    const weeklyDisc = document.getElementById('disp-disc-weekly');
+    if (weeklySell) weeklySell.textContent = fmt(prices.sell);
+    if (weeklyOrig) weeklyOrig.textContent = 'Rp ' + fmt(prices.orig);
+    if (weeklyDisc) weeklyDisc.textContent = 'hemat ~' + disc + '%';
     const dailyOrig = document.getElementById('disp-orig-daily');
     if (dailyOrig) dailyOrig.textContent = fmt(prices.orig);
     document.getElementById('plan-period').textContent = prices.duration;
@@ -657,6 +689,7 @@
     document.getElementById('cur-duration').textContent = prices.duration;
     document.getElementById('toggle-daily').checked = !!settings.services.daily;
     document.getElementById('toggle-shared').checked = !!settings.services.shared;
+    document.getElementById('toggle-weekly').checked = !!settings.services.weekly;
     document.getElementById('toggle-private').checked = !!settings.services.private;
     document.getElementById('admin-schedule-url').value = settings.scheduleUrl;
     document.getElementById('cur-schedule-url').textContent = settings.scheduleUrl;
@@ -687,11 +720,12 @@
       services: {
         daily: document.getElementById('toggle-daily').checked,
         shared: document.getElementById('toggle-shared').checked,
+        weekly: document.getElementById('toggle-weekly').checked,
         private: document.getElementById('toggle-private').checked
       },
       scheduleUrl: normalizeUrl(document.getElementById('admin-schedule-url').value)
     };
-    if (!newSettings.services.daily && !newSettings.services.shared && !newSettings.services.private) {
+    if (!newSettings.services.daily && !newSettings.services.shared && !newSettings.services.weekly && !newSettings.services.private) {
       alert('Minimal satu layanan harus aktif.'); return;
     }
 
@@ -740,6 +774,7 @@
     if (type === 'discount') return { icon:'🎉', name:'Claude Pro Shared (Diskon)', amount:150000, period:'per bulan' };
     if (type === 'daily') return { icon:'📅', name:'Claude Pro Private Harian', amount:50000, period:'per hari' };
     if (type === 'daily-discount') return { icon:'🎉', name:'Claude Pro Private Harian (Diskon)', amount:40000, period:'per hari' };
+    if (type === 'weekly') return { icon:'🔐', name:'Claude Pro Private Mingguan', amount:prices.sell, period:'per minggu' };
     return { icon:'👑', name:'Claude Pro Private', amount:390000, period:'per bulan' };
   }
 
@@ -777,6 +812,12 @@
       prc.textContent  = 'Rp 40.000 / hari';
       note.style.display = 'block';
       sub.textContent  = 'Harga spesial Rp 40.000/hari. Masukkan email akun Claude kamu yang ingin di-upgrade.';
+    } else if (type === 'weekly') {
+      icon.textContent = '🔐';
+      lbl.textContent  = 'Claude Pro Private Mingguan';
+      prc.textContent  = 'Rp ' + fmt(prices.sell) + ' / minggu';
+      note.style.display = 'block';
+      sub.textContent  = 'Masukkan email akun Claude kamu yang ingin digunakan untuk Claude Pro Private selama 1 minggu.';
     } else {
       icon.textContent = '👑';
       lbl.textContent  = 'Claude Pro Private';
